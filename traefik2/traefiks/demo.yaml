@@ -1,0 +1,14 @@
+http:
+  routers:
+    route-api:
+      rule: Host(`www.13sai.cn`)
+      entryPoints:
+        - web
+      service: service-demo
+
+  services:
+    service-demo:
+      loadBalancer:
+        passHostHeader: true
+        servers:
+          - url: "http://172.23.0.2"

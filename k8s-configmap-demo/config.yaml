@@ -1,0 +1,4 @@
+name: demo2
+mode: debug
+addr: :8080
+hi: w~o~w

@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+    whoami:
+        # 一个通过 API 暴露其 IP 地址的容器
+        image: containous/whoami
+    traefik2:
+        image: traefik:v2.3.7
+        container_name: traefik
+        # 启用Web UI并监听docker
+        command: --configfile=/etc/traefik.yaml --api.insecure=true --api.dashboard=true
+        ports:
+            # HTTP 端口
+            - "80:80"
+            # Web UI 端口
+            - "8082:8080"
+        volumes:
+            # 这样Traefik可以监听Docker事件
+            # - ./run/docker.sock:/var/run/docker.sock
+            - ./traefik.yaml:/etc/traefik.yaml
+            - ./traefiks:/etc/traefiks

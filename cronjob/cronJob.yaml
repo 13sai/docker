@@ -1,0 +1,15 @@
+apiVersion: batch/v1beta1 # 当前 CronJob 的 apiVersion
+kind: CronJob # 指明当前资源的类型为 CronJob。
+metadata:
+  name: hello
+spec:
+  schedule: "*/10 * * * *" # schedule 指定什么时候运行 Job
+  jobTemplate: # jobTemplate 定义 Job 的模板，格式与上文的 Job 一致
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: busybox
+            command: ["echo","Welcome to github.13sai.com"]
+          restartPolicy: OnFailure
